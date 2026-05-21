@@ -1,0 +1,142 @@
+{
+  "quarterEnd": "2026-06-30",
+  "currentUser": {
+    "id": "u1",
+    "name": "Rodrigo Carrasco",
+    "role": "Sales Specialist"
+  },
+  "accounts": [
+    { "id": "a1", "name": "Contoso Ltd", "tpid": "TP-10001", "tier": "Strategic" },
+    { "id": "a2", "name": "Fabrikam Inc", "tpid": "TP-10002", "tier": "Growth" },
+    { "id": "a3", "name": "Northwind Traders", "tpid": "TP-10003", "tier": "Standard" },
+    { "id": "a4", "name": "Adventure Works", "tpid": "TP-10004", "tier": "Strategic" }
+  ],
+  "meetings": [
+    {
+      "id": "m1",
+      "title": "Contoso AI Platform Review",
+      "date": "2026-05-19",
+      "accountId": "a1",
+      "attendees": ["Rodrigo Carrasco", "Sarah Chen (Contoso CTO)", "James Park (AE)"],
+      "transcript": "Sarah mentioned they're evaluating Azure OpenAI for their customer support chatbot. They want to move to production by Q3. Budget is pre-approved at $200K ARR. She asked about enterprise security features and compliance certifications. James confirmed pricing tier and SLA. Sarah wants a technical deep-dive next week with her platform engineering team."
+    },
+    {
+      "id": "m2",
+      "title": "Fabrikam Data Migration Kickoff",
+      "date": "2026-05-20",
+      "accountId": "a2",
+      "attendees": ["Rodrigo Carrasco", "Mike Torres (Fabrikam VP Eng)", "Lisa Wang (AE)"],
+      "transcript": "Mike is exploring moving their on-prem SQL workloads to Azure SQL. They have 12 databases, roughly 4TB total. Timeline is exploratory — no hard deadline yet. He wants to understand cost comparison and migration tooling. Lisa suggested a proof of concept with one non-critical database first. Mike agreed and asked for a migration assessment proposal."
+    },
+    {
+      "id": "m3",
+      "title": "Northwind Copilot Pilot Wrap-up",
+      "date": "2026-05-21",
+      "accountId": "a3",
+      "attendees": ["Rodrigo Carrasco", "Anna Lee (Northwind IT Dir)", "David Kim (AE)"],
+      "transcript": "Anna shared results from the M365 Copilot pilot — 85% satisfaction rate across 50 users. They want to expand to 500 seats by July. Anna needs help with the business case for the CFO. David mentioned volume licensing options. Anna also flagged concerns about data residency for their EU subsidiary. Production rollout is the goal."
+    },
+    {
+      "id": "m4",
+      "title": "Adventure Works GitHub Copilot Discussion",
+      "date": "2026-05-18",
+      "accountId": "a4",
+      "attendees": ["Rodrigo Carrasco", "Tom Harris (AW Dev Lead)", "Rachel Green (AE)"],
+      "transcript": "Tom's team of 80 developers is interested in GitHub Copilot Enterprise. They want to measure productivity impact. Tom asked about code completion accuracy and IP indemnity. Rachel proposed a 30-day trial with 20 developers. Tom wants metrics on lines of code accepted and time saved. No production commitment discussed yet."
+    }
+  ],
+  "opportunities": [
+    {
+      "id": "o1",
+      "name": "Contoso - Azure OpenAI Production Deployment",
+      "accountId": "a1",
+      "stage": 2,
+      "revenue": 200000,
+      "closeDate": "2026-08-30",
+      "status": "On Track"
+    },
+    {
+      "id": "o2",
+      "name": "Fabrikam - Azure SQL Migration Assessment",
+      "accountId": "a2",
+      "stage": 1,
+      "revenue": 150000,
+      "closeDate": "2026-09-30",
+      "status": "On Track"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "ms1",
+      "opportunityId": "o1",
+      "accountId": "a1",
+      "title": "Technical Deep-Dive with Platform Eng",
+      "stage": 2,
+      "status": "On Track",
+      "dueDate": "2026-05-28",
+      "owner": "Rodrigo Carrasco",
+      "committed": false,
+      "existingComment": ""
+    },
+    {
+      "id": "ms2",
+      "opportunityId": "o1",
+      "accountId": "a1",
+      "title": "Security & Compliance Review",
+      "stage": 2,
+      "status": "On Track",
+      "dueDate": "2026-06-10",
+      "owner": "Rodrigo Carrasco",
+      "committed": false,
+      "existingComment": "Need to review SOC2 and HIPAA certs."
+    },
+    {
+      "id": "ms3",
+      "opportunityId": "o1",
+      "accountId": "a1",
+      "title": "POC Environment Provisioning",
+      "stage": 2,
+      "status": "At Risk",
+      "dueDate": "2026-06-20",
+      "owner": "Rodrigo Carrasco",
+      "committed": false,
+      "existingComment": "Waiting on subscription access."
+    },
+    {
+      "id": "ms4",
+      "opportunityId": "o2",
+      "accountId": "a2",
+      "title": "Migration Assessment Proposal",
+      "stage": 1,
+      "status": "On Track",
+      "dueDate": "2026-06-05",
+      "owner": "Rodrigo Carrasco",
+      "committed": false,
+      "existingComment": ""
+    },
+    {
+      "id": "ms5",
+      "opportunityId": "o2",
+      "accountId": "a2",
+      "title": "Database Inventory & Sizing",
+      "stage": 1,
+      "status": "Not Started",
+      "dueDate": "2026-06-15",
+      "owner": "Rodrigo Carrasco",
+      "committed": false,
+      "existingComment": ""
+    },
+    {
+      "id": "ms6",
+      "opportunityId": "o1",
+      "accountId": "a1",
+      "title": "Executive Sponsorship Confirmation",
+      "stage": 3,
+      "status": "On Track",
+      "dueDate": "2026-06-25",
+      "owner": "James Park",
+      "committed": false,
+      "existingComment": "Sarah Chen verbally confirmed support."
+    }
+  ]
+}
