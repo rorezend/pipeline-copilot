@@ -118,7 +118,7 @@ export default function U2CQueue() {
               <th className="p-3 text-left">Account</th>
               <th className="p-3 text-left">Stage</th>
               <th className="p-3 text-left">Status</th>
-              <th className="p-3 text-left">Confidence</th>
+              <th className="p-3 text-left">U2C Confidence</th>
               <th className="p-3 text-left">Due Date</th>
               <th className="p-3 text-left">Owner</th>
               <th className="p-3 text-left">Comment</th>
