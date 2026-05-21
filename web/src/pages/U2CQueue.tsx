@@ -118,6 +118,7 @@ export default function U2CQueue() {
               <th className="p-3 text-left">Account</th>
               <th className="p-3 text-left">Stage</th>
               <th className="p-3 text-left">Status</th>
+              <th className="p-3 text-left">Confidence</th>
               <th className="p-3 text-left">Due Date</th>
               <th className="p-3 text-left">Owner</th>
               <th className="p-3 text-left">Comment</th>
@@ -147,6 +148,9 @@ export default function U2CQueue() {
                   <td className="p-3">
                     <StatusBadge status={m.status} />
                   </td>
+                  <td className="p-3">
+                    <ConfidenceBadge milestone={m} />
+                  </td>
                   <td className={`p-3 ${overdue ? 'text-red-400 font-semibold' : 'text-gray-400'}`}>
                     {m.dueDate} {overdue && '⚠'}
                   </td>
@@ -163,7 +167,7 @@ export default function U2CQueue() {
             })}
             {uncommitted.length === 0 && (
               <tr>
-                <td colSpan={8} className="p-8 text-center text-gray-600">
+                <td colSpan={9} className="p-8 text-center text-gray-600">
                   No uncommitted milestones match your filters.
                 </td>
               </tr>
@@ -205,6 +209,31 @@ export default function U2CQueue() {
         </div>
       )}
     </div>
+  );
+}
+
+function ConfidenceBadge({ milestone }: { milestone: Milestone }) {
+  // Predict confidence without running agent — same heuristics
+  const dueDate = new Date(milestone.dueDate);
+  const daysUntilDue = Math.ceil((dueDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
+  const signals = [
+    milestone.stage >= 2,
+    milestone.stage >= 2 && milestone.status === 'On Track',
+    milestone.stage >= 3,
+    milestone.status !== 'At Risk' && milestone.status !== 'Blocked',
+    daysUntilDue <= 30,
+  ].filter(Boolean).length;
+
+  const level = signals >= 4 ? 'High' : signals >= 2 ? 'Med' : 'Low';
+  const colors: Record<string, string> = {
+    High: 'bg-emerald-500/20 text-emerald-400',
+    Med: 'bg-yellow-500/20 text-yellow-400',
+    Low: 'bg-red-500/20 text-red-400',
+  };
+  return (
+    <span className={`text-xs font-semibold px-2 py-0.5 rounded ${colors[level]}`}>
+      {level}
+    </span>
   );
 }
 

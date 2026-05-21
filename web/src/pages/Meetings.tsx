@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { getData, getAccountName } from '../store';
+import { getData, getAccountName, addOpportunity, addMilestones } from '../store';
 import { generatePipelineDraft } from '../agents/createAgent';
 import type { Meeting, OpportunityDraft } from '../types';
 
@@ -7,11 +7,40 @@ export default function Meetings() {
   const data = getData();
   const [selectedMeeting, setSelectedMeeting] = useState<Meeting | null>(null);
   const [draft, setDraft] = useState<OpportunityDraft | null>(null);
+  const [created, setCreated] = useState(false);
 
   const handleGenerate = () => {
     if (!selectedMeeting) return;
     const result = generatePipelineDraft(selectedMeeting);
     setDraft(result);
+    setCreated(false);
+  };
+
+  const handleCreateInMSX = () => {
+    if (!draft) return;
+    const oppId = `o-${Date.now()}`;
+    addOpportunity({
+      id: oppId,
+      name: draft.name,
+      accountId: draft.accountId,
+      stage: draft.stage,
+      revenue: draft.estimatedRevenue,
+      closeDate: draft.suggestedCloseDate,
+      status: 'On Track',
+    });
+    addMilestones(draft.milestones.map((ms, i) => ({
+      id: `ms-${Date.now()}-${i}`,
+      opportunityId: oppId,
+      accountId: draft.accountId,
+      title: ms.title,
+      stage: ms.stage,
+      status: 'Not Started',
+      dueDate: ms.dueDate,
+      owner: ms.owner,
+      committed: false,
+      existingComment: '',
+    })));
+    setCreated(true);
   };
 
   return (
@@ -107,7 +136,19 @@ export default function Meetings() {
               </div>
 
               <button
-                onClick={() => { setDraft(null); setSelectedMeeting(null); }}
+                onClick={handleCreateInMSX}
+                disabled={created}
+                className={`w-full py-2.5 font-semibold rounded-lg text-sm transition-colors ${
+                  created
+                    ? 'bg-emerald-500/20 text-emerald-400 cursor-default'
+                    : 'bg-blue-600 hover:bg-blue-700 text-white'
+                }`}
+              >
+                {created ? '✓ Created in MSX (simulated)' : '🚀 Create Opportunity in MSX'}
+              </button>
+
+              <button
+                onClick={() => { setDraft(null); setSelectedMeeting(null); setCreated(false); }}
                 className="w-full py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-lg text-sm transition-colors"
               >
                 ← Back to Meetings

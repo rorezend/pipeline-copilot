@@ -42,3 +42,22 @@ export function loadPersistedState(): void {
     }
   } catch { /* noop */ }
 }
+
+export function addOpportunity(opp: MockData['opportunities'][number]): void {
+  data.opportunities.push(opp);
+  persistState();
+}
+
+export function addMilestones(milestones: Milestone[]): void {
+  data.milestones.push(...milestones);
+  persistState();
+}
+
+export function resetAllData(): void {
+  const fresh: MockData = JSON.parse(JSON.stringify(rawData));
+  data.accounts = fresh.accounts;
+  data.meetings = fresh.meetings;
+  data.opportunities = fresh.opportunities;
+  data.milestones = fresh.milestones;
+  try { localStorage.removeItem('pipeline-copilot-state'); } catch { /* noop */ }
+}
